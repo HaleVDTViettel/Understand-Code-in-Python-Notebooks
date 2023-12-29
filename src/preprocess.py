@@ -107,7 +107,7 @@ def get_features(df):
     features = {}
     df = df.sort_values("rank").reset_index(drop=True)
     for idx, sub_df in tqdm(df.groupby("id")):
-        features[idx] = dict()
+        features[idx] = {}
         total_md = sub_df[sub_df.cell_type == "markdown"].shape[0]
         code_sub_df = sub_df[sub_df.cell_type == "code"]
         total_code = code_sub_df.shape[0]
