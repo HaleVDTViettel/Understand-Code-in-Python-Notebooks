@@ -104,7 +104,7 @@ def sample_cells(cells, n):
 
 
 def get_features(df):
-    features = dict()
+    features = {}
     df = df.sort_values("rank").reset_index(drop=True)
     for idx, sub_df in tqdm(df.groupby("id")):
         features[idx] = dict()
