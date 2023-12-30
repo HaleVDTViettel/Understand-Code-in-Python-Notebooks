@@ -6,7 +6,7 @@ from transformers import AutoModel, AutoTokenizer, AdamW, get_linear_schedule_wi
 
 class MarkdownModel(nn.Module):
     def __init__(self, model_path):
-        super(MarkdownModel, self).__init__()
+        super().__init__()
         self.model = AutoModel.from_pretrained(model_path)
         self.top = nn.Linear(769, 1)
 
