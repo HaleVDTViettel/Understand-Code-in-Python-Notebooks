@@ -11,12 +11,16 @@ from metrics import *
 import torch
 import argparse
 
+# supress warnings
+import warnings
+warnings.filterwarnings("ignore")
+
 parser = argparse.ArgumentParser(description='Process some arguments')
 parser.add_argument('--model_name_or_path', type=str, default='microsoft/codebert-base')
 parser.add_argument('--train_mark_path', type=str, default='./data/train_mark.csv')
 parser.add_argument('--train_features_path', type=str, default='./data/train_fts.json')
 parser.add_argument('--val_mark_path', type=str, default='./data/val_mark.csv')
-parser.add_argument('--val_features_path', type=str, default='./data/val_fts.csv')
+parser.add_argument('--val_features_path', type=str, default='./data/val_fts.json')
 parser.add_argument('--val_path', type=str, default="./data/val.csv")
 
 parser.add_argument('--md_max_len', type=int, default=64)
@@ -27,8 +31,9 @@ parser.add_argument('--epochs', type=int, default=5)
 parser.add_argument('--n_workers', type=int, default=8)
 
 args = parser.parse_args()
-os.mkdir("./outputs")
-data_dir = Path('..//input/')
+if not os.path.exists("./outputs"):
+    os.mkdir("./outputs")
+data_dir = Path('./input')
 
 train_df_mark = pd.read_csv(args.train_mark_path).drop("parent_id", axis=1).dropna().reset_index(drop=True)
 train_fts = json.load(open(args.train_features_path))
@@ -36,12 +41,11 @@ val_df_mark = pd.read_csv(args.val_mark_path).drop("parent_id", axis=1).dropna()
 val_fts = json.load(open(args.val_features_path))
 val_df = pd.read_csv(args.val_path)
 
-order_df = pd.read_csv("../input/train_orders.csv").set_index("id")
+order_df = pd.read_csv("./input/train_orders.csv").set_index("id")
 df_orders = pd.read_csv(
     data_dir / 'train_orders.csv',
     index_col='id',
-    squeeze=True,
-).str.split()
+).squeeze().str.split()
 
 train_ds = MarkdownDataset(train_df_mark, model_name_or_path=args.model_name_or_path, md_max_len=args.md_max_len,
                            total_max_len=args.total_max_len, fts=train_fts)
