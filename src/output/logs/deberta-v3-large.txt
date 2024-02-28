@@ -1,0 +1,29 @@
+>> parameter:
+result_dir:./output/
+data_dir:../input/
+k_folds:5
+n_jobs:4
+random_seed:27
+seq_length:2048
+cell_count:128
+cell_max_length:128
+device:cuda
+use_cuda:True
+gpu:0
+print_freq:100
+lr:5e-06
+weight_decay:0.0
+optim:Adam
+base_epoch:10
+out_dir:../user_data
+gpu_id:0
+model_name:deberta-v3-large
+batch_size:5
+workers:4
+n_accumulate:1
+max_grad_norm:1.0
+max_seq_length:2048
+folds:0
+pre_epoch:15
+args:Namespace(out_dir='../user_data', gpu_id='0', model_name='deberta-v3-large', base_epoch=10, batch_size=5, workers=4, lr=5e-06, n_accumulate=1, max_grad_norm=1.0, weight_decay=0.0, seq_length=2048, max_seq_length=2048, folds='0', pre_epoch=15)
+>> data_processing...

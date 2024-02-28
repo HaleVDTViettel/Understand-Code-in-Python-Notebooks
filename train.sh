@@ -1,8 +1,17 @@
- python src/train.py \
- --model_name_or_path microsoft/codebert-base \
- --md_max_len 128 \
- --total_max_len 512 \
- --batch_size 42 \
- --accumulation_steps 128 \
- --epochs 7 \
- --n_workers 8
+cd src
+
+python train_mlm.py \
+    --model_name microsoft/deberta-v3-large \
+    --base_epoch 15 \
+    --batch_size 7 \
+    --learning_rate 5e-6 \
+    --max_length 1024
+
+python train.py \
+    --model microsoft/deberta-v3-large \
+    --base_epoch 10 \
+    --batch_size 5 \
+    --lr 5e-6 \
+    --seq_length 2048 \
+    --max_grad_norm 1.0 \
+    --folds 0  

@@ -1,6 +1,2 @@
-# Download dataset from Kaggle
-kaggle competitions download -c AI4Code
-# unzip file
-unzip AI4Code.zip
-# delete zip file
-rm AI4Code.zip
+git clone https://huggingface.co/datasets/Haler2309/AI4code
+mv AI4Code/* input
