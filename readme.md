@@ -45,10 +45,10 @@ src: code to rebuild models from scratch
 
 ## HARDWARE: (The following specs were used to create the original solution)
 Inference & Training:
-OS: Ubuntu 22.04.3 LTS x86_64
-GPU: 1 * RTX3090
-CPU: 1 * 13th Gen Intel i5-13600K (20) @ 5.100GHz
-RAM: 32GB DDR5
+- OS: Ubuntu 22.04.3 LTS x86_64
+- GPU: 1 * RTX3090
+- CPU: 1 * 13th Gen Intel i5-13600K (20) @ 5.100GHz
+- RAM: 32GB DDR5
 
 ## Configuration files & SETTINGS.json
 see src/parameter.py
@@ -56,10 +56,10 @@ see src/parameter.py
 ## MODEL TRAIN&PREDICT
 1.Training:
 
-cd src
+    cd src
 
-python train_mlm.py --model_name deberta-v3-large --base_epoch 15 --batch_size 7 --learning_rate 5e-6 --max_length 1024
+    python train_mlm.py --model_name deberta-v3-large --base_epoch 15 --batch_size 7 --learning_rate 5e-6 --max_length 1024
 
-python train.py --model deberta-v3-large --base_epoch 10 --batch_size 5 --lr 5e-6 --seq_length 2048 --max_grad_norm 1.0 --folds 0  
+    python train.py --model deberta-v3-large --base_epoch 10 --batch_size 5 --lr 5e-6 --seq_length 2048 --max_grad_norm 1.0 --folds 0  
 
 2.Inference:
