@@ -1,6 +1,6 @@
 ## Overview
 
-I used single list-wise deberta-v3-large trained on all competition data. Input text is cells separated with [SEP] and [CLS] tokens.
+I used single list-wise deberta-v3-large trained on all data. Input text is cells separated with [SEP] and [CLS] tokens.
 
 ## What Worked
 
